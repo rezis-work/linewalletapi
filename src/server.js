@@ -18,14 +18,10 @@ app.use(rateLimiter);
 app.use(express.json());
 
 app.get("/api/health", async (req, res) => {
-  const key = `${req.ip}:${req.path}`;
-  const result = await ratelimit.limit(key);
   res.status(200).json({
     message: "Server is running",
     status: "ok",
     status: "healthy",
-    ip: req.ip,
-    result,
   });
 });
 
